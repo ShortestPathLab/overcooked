@@ -31,5 +31,5 @@ dependencies = [
     "tqdm==4.50.1",
 ]
 
-[tool.setuptools.packages.find]
-where = ["overcooked"] 
+[tool.setuptools]
+packages = ["overcooked"]

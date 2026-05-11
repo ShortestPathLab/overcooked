@@ -1,16 +1,13 @@
 # from environment import OvercookedEnvironment
 # from gym_cooking.envs import OvercookedEnvironment
-from recipe_planner.recipe import *
-from utils.world import World
-from utils.agent import RealAgent, SimAgent, COLORS
-from utils.core import *
+import recipe_planner
+from utils.agent import RealAgent, COLORS
 from misc.game.gameplay import GamePlay
 from misc.metrics.metrics_bag import Bag
 
 import numpy as np
 import random
 import argparse
-from collections import namedtuple
 
 import gymnasium as gym
 
@@ -128,12 +125,11 @@ def initialize_agents(arglist):
 
             # phase 2: read in recipe list
             elif phase == 2:
-                recipes.append(globals()[line]())
+                recipes.append(getattr(recipe_planner.recipe, line)())
 
             # phase 3: read in agent locations (up to num_agents)
             elif phase == 3:
                 if len(real_agents) < arglist.num_agents:
-                    loc = line.split(" ")
                     real_agent = RealAgent(
                         arglist=arglist,
                         name="agent-" + str(len(real_agents) + 1),
@@ -154,10 +150,10 @@ def main_loop(arglist):
     real_agents = initialize_agents(arglist=arglist)
 
     # Info bag for saving pkl files
-    bag = Bag(arglist=arglist, filename=env.filename)
-    bag.set_recipe(recipe_subtasks=env.all_subtasks)
+    bag = Bag(arglist=arglist, filename=env.unwrapped.filename)
+    bag.set_recipe(recipe_subtasks=env.unwrapped.all_subtasks)
 
-    while not env.done():
+    while not env.unwrapped.done():
         action_dict = {}
 
         for agent in real_agents:
