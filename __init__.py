@@ -1,1 +1,1 @@
-from gym_cooking import recipe_planner
+from overcooked import recipe_planner

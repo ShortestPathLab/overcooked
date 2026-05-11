@@ -1,0 +1,35 @@
+[project]
+name = "overcooked"
+readme = "README.md"
+requires-python = ">=3.14"
+version = "0.0.1"
+description = "Too Many Cooks: Overcooked environment"
+authors = [
+    { name = "Rose E. Wang", email = "rewang@stanford.edu" },
+    { name = "Kevin Zheng", email = "kevin.zheng@monash.edu" }
+]
+dependencies = [
+    "cloudpickle==1.3.0",
+    "decorator==4.4.2",
+    "dill==0.3.2",
+    "future==0.18.2",
+    "gymnasium==1.3.0",
+    "matplotlib>=3.8",
+    "networkx==3",
+    "numpy==1.26.4",
+    "pandas>=2.0",
+    "Pillow>=8.1.1",
+    "pygame-ce>=2.5.7",
+    "pyglet==1.5.0",
+    "pyparsing==2.4.7",
+    "python-dateutil==2.8.2",
+    "pytz==2020.1",
+    "scipy>=1.11",
+    "seaborn==0.11.0",
+    "six==1.17.0",
+    "termcolor==1.1.0",
+    "tqdm==4.50.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["overcooked"] 
